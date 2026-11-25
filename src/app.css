@@ -1,0 +1,81 @@
+/* Global styles + design tokens (CSS variables) shared by all pages. */
+:root {
+	--ink: #14211c;
+	--ink-2: #22372f;
+	--desk: #eef1ec;
+	--sheet: #ffffff;
+	--line: #d6dcd3;
+	--muted: #5c6a63;
+	--marker: #e0ab0b;
+	--moss: #2f6f5e;
+	--alert: #c93a3a;
+	--bg: #f7f8fa;
+	--surface: #ffffff;
+	--text: #1b1f27;
+	--muted: #5d6675;
+	--border: #e3e6eb;
+	--accent: #3b5bdb;
+	--accent-text: #ffffff;
+	--width: 64rem;
+}
+
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+	line-height: 1.6;
+	color: var(--text);
+	background: var(--bg);
+	overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+	line-height: 1.2;
+	font-family: 'Young Serif', serif;
+	font-weight: 400;
+	font-style: normal;
+
+}
+
+.button {
+	display: inline-block;
+	padding: 0.75rem 1.5rem;
+	border-radius: 0.5rem;
+	background: var(--accent);
+	color: var(--accent-text);
+	text-decoration: none;
+	font-weight: 600;
+}
+.button:hover {
+	filter: brightness(1.1);
+}
+
+/* Small screens: one column, with the image shown above the text. */
+	.split {
+		display: grid;
+		gap: 2rem;
+		align-items: center;
+	}
+	.split img {
+		order: -1; /* visually first; the text stays first in the HTML source */
+	}
+	/* Wider screens: two equal columns, text left, image right. */
+	@media (min-width: 48rem) {
+		.split {
+			grid-template-columns: 1fr 1fr;
+		}
+		.split img {
+			order: 0;
+		}
+	}
+	.split img {
+		width: 100%;
+		height: auto;
+		border-radius: 0.75rem;
+	}
