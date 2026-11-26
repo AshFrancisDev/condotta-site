@@ -136,7 +136,7 @@
 		background: none;
 		cursor: pointer;
 		position: relative;
-		color: var(--text);
+		color: var(--desk); /* the bars use currentColor, so this colours the icon */
 	}
 	.toggle span {
 		position: absolute;
@@ -216,6 +216,7 @@
 		.menu li a {
 			display: block;
 			padding: 0.9rem 1.5rem;
+			color: var(--accent);
 		}
 		.menu ul a.active {
 			border-bottom: none;
