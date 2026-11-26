@@ -1,3 +1,23 @@
+/* Young Serif, declared here (instead of importing @fontsource/young-serif's CSS) so we can use
+   font-display: block. That hides heading text for a moment while the font loads instead of showing
+   a fallback font and swapping, which is the flash. The latin file is also preloaded in +layout.svelte. */
+@font-face {
+	font-family: 'Young Serif';
+	font-style: normal;
+	font-weight: 400;
+	font-display: block;
+	src: url('../node_modules/@fontsource/young-serif/files/young-serif-latin-ext-400-normal.woff2') format('woff2');
+	unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+	font-family: 'Young Serif';
+	font-style: normal;
+	font-weight: 400;
+	font-display: block;
+	src: url('../node_modules/@fontsource/young-serif/files/young-serif-latin-400-normal.woff2') format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* Global styles + design tokens (CSS variables) shared by all pages. */
 :root {
 	--ink: #14211c;
@@ -14,9 +34,10 @@
 	--text: #1b1f27;
 	--muted: #5d6675;
 	--border: #e3e6eb;
-	--accent: #3b5bdb;
+	--accent: #22372f;
 	--accent-text: #ffffff;
 	--width: 64rem;
+	--brandfont: "young Serif", serif;
 }
 
 
@@ -33,6 +54,35 @@ body {
 	overflow-x: hidden;
 }
 
+.bg-green {
+	background-color: var(--ink-2);
+	color: var(--desk);
+}
+
+main > section {
+	max-width: var(--width);
+	margin: 0 auto;
+	}
+
+/* Full-bleed section: spans the whole browser window even though <main> is narrower.
+   Usage:
+     <section class="full-width">
+       <div> ...content, constrained to the same width as <main>... </div>
+     </section>
+   Put background colours/images on the section; put content in the inner div. */
+main > section.full-width {
+	width: 100vw;
+	max-width: none; /* overrides the `main > section` width cap above */
+	margin-inline: calc(50% - 50vw);
+}
+main > section.full-width > div {
+	max-width: var(--width);
+	margin: 0 auto;
+	padding-inline: 1.5rem; /* same side padding as <main>, so content lines up with the rest */
+}
+
+
+
 h1,
 h2,
 h3 {
@@ -47,13 +97,20 @@ h3 {
 	display: inline-block;
 	padding: 0.75rem 1.5rem;
 	border-radius: 0.5rem;
-	background: var(--accent);
-	color: var(--accent-text);
+	background: var(--ink-2);
+	color: var(--desk);
 	text-decoration: none;
-	font-weight: 600;
+	font-weight: 400;
 }
 .button:hover {
 	filter: brightness(1.1);
+}
+
+.statement {
+	padding: 10px 0;
+	text-align: center;
+	font-family: var(--brandfont);
+	font-size: 32px !important;
 }
 
 /* Small screens: one column, with the image shown above the text. */
@@ -79,3 +136,8 @@ h3 {
 		height: auto;
 		border-radius: 0.75rem;
 	}
+
+	section {
+		padding-top: 24px;
+	}
+

@@ -16,6 +16,7 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
-		"@fontsource/young-serif": "^5.3.0"
+		"@fontsource/young-serif": "^5.3.0",
+		"gsap": "^3.15.1"
 	}
 }

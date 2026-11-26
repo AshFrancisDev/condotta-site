@@ -1,4 +1,5 @@
 <script>
+	import ComparisonTable from '$lib/ComparisonTable.svelte';
 	import { base } from '$app/paths';
 	// Plain data. Edit this array and the page updates; no HTML copy-pasting.
 	const plans = [
@@ -7,6 +8,7 @@
 			price: '£0',
 			period: 'per month',
 			features: ['All Core Features', '5 Clients', '5 Projects per client'],
+			link: '/download',
 			featured: false
 		},
 		{
@@ -14,6 +16,7 @@
 			price: '£7.99',
 			period: 'per month',
 			features: ['All Core features', 'Unlimited Clients', 'Unlimited Projects'],
+			link: 'https://polar.sh/checkout/polar_c_Fa0b9jKztLIfmBkjv7sNgxLAtuvMSvFDHTz1i0OthuT',
 			featured: true
 		},
 		{
@@ -21,6 +24,7 @@
 			price: '£149',
 			period: 'one time',
 			features: ['All Pro features', 'Pay once - own it forever'],
+			link: 'https://polar.sh/checkout/polar_c_Fa0b9jKztLIfmBkjv7sNgxLAtuvMSvFDHTz1i0OthuT',
 			featured: false
 		}
 	];
@@ -64,40 +68,13 @@
 					<li>{feature}</li>
 				{/each}
 			</ul>
-			<a class="button" href="{base}/about">Choose {plan.name}</a>
+			<a class="button" href="{plan.link}">Choose {plan.name}</a>
 		</section>
 	{/each}
 </div>
 
 <h2 class="compare-title">Compare features</h2>
-<table class="compare">
-	<thead>
-		<tr>
-			<th scope="col">Feature</th>
-			{#each plans as plan}
-				<th scope="col">{plan.name}</th>
-			{/each}
-		</tr>
-	</thead>
-	<tbody>
-		{#each comparison as row}
-			<tr>
-				<th scope="row">{row.feature}</th>
-				{#each row.values as value, i}
-					<td data-label={plans[i].name}>
-						{#if value === true}
-							<span aria-label="Included">✓</span>
-						{:else if value === false}
-							<span class="no" aria-label="Not included">–</span>
-						{:else}
-							{value}
-						{/if}
-					</td>
-				{/each}
-			</tr>
-		{/each}
-	</tbody>
-</table>
+<ComparisonTable columns={plans.map((plan) => plan.name)} rows={comparison} highlight={null} />
 
 <style>
 	.lead {
@@ -145,73 +122,5 @@
 
 	.compare-title {
 		margin-top: 3rem;
-	}
-	.compare {
-		width: 100%;
-		border-collapse: collapse;
-		background: var(--surface);
-		border: 1px solid var(--border);
-		border-radius: 0.75rem;
-		overflow: hidden;
-	}
-	.compare th,
-	.compare td {
-		padding: 0.85rem 1rem;
-		border-bottom: 1px solid var(--border);
-		text-align: center;
-	}
-	.compare thead th {
-		background: var(--bg);
-	}
-	.compare th:first-child {
-		text-align: left;
-	}
-	.compare tbody tr:last-child > * {
-		border-bottom: none;
-	}
-	.compare tbody th {
-		font-weight: 500;
-	}
-	.no {
-		color: var(--muted);
-	}
-
-	/* Small screens: each feature becomes its own card, with the plan name beside each value. */
-	@media (max-width: 40rem) {
-		.compare thead {
-			position: absolute;
-			left: -9999px; /* hidden visually, still read by screen readers */
-		}
-		.compare,
-		.compare tbody,
-		.compare tr,
-		.compare th,
-		.compare td {
-			display: block;
-		}
-		.compare {
-			background: none;
-			border: none;
-		}
-		.compare tr {
-			background: var(--surface);
-			border: 1px solid var(--border);
-			border-radius: 0.75rem;
-			margin-bottom: 1rem;
-			overflow: hidden;
-		}
-		.compare tbody th {
-			background: var(--bg);
-			font-weight: 600;
-		}
-		.compare td {
-			display: flex;
-			justify-content: space-between;
-			text-align: right;
-		}
-		.compare td::before {
-			content: attr(data-label);
-			color: var(--muted);
-		}
 	}
 </style>

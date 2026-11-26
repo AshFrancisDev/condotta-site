@@ -1,5 +1,6 @@
 <script>
-	import '@fontsource/young-serif';
+	// Preload the main font file so it's requested immediately, not after the CSS is parsed.
+	import fontUrl from '@fontsource/young-serif/files/young-serif-latin-400-normal.woff2?url';
 	import { page } from '$app/state';
 	import { base } from '$app/paths';
 	import '../app.css';
@@ -20,12 +21,17 @@
 		{ path: '', label: 'Home' },
 		{ path: '/about', label: 'About' },
 		{ path: '/features', label: 'Features' },
-		{ path: '/pricing', label: 'Pricing' }
+		{ path: '/pricing', label: 'Pricing' },
+		{ path: '/download', label: 'Download' }
 	];
 
 	// True when the current URL is this link's page (ignoring any trailing slash).
 	const isActive = (path) => page.url.pathname.replace(/\/$/, '') === base + path;
 </script>
+
+<svelte:head>
+	<link rel="preload" as="font" type="font/woff2" href={fontUrl} crossorigin="anonymous" />
+</svelte:head>
 
 <svelte:window onkeydown={(e) => e.key === 'Escape' && (open = false)} />
 
@@ -71,17 +77,19 @@
 </main>
 
 <footer>
-	<p>&copy; {new Date().getFullYear()} Condotta. All rights reserved.</p>
+	<p>&copy; {new Date().getFullYear()} Condotta. All rights reserved. Developed by <a title="Ash Francis, Freelance web developer in Birmingham" href="https://www.ashfrancis.co.uk">Ash Francis</a> </p>
 </footer>
 
 <style>
 	/* Styles in a <style> block are scoped: they only affect this component. */
 	header {
-		position: relative; /* the mobile menu is positioned against the header */
+		position: fixed;
 		border-bottom: 1px solid var(--border);
 		background: var(--surface);
 		background-color: var(--ink-2);
 		color: var(--desk);
+		width: 100%;
+
 	}
 	nav {
 		max-width: var(--width);
@@ -226,9 +234,10 @@
 	main {
 		max-width: var(--width);
 		margin: 0 auto;
-		padding: 3rem 1.5rem;
+		padding: 5rem 1.5rem;
 		min-height: 60vh;
 	}
+	
 	footer {
 		border-top: 1px solid var(--border);
 		text-align: center;
