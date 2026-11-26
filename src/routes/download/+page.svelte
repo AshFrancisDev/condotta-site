@@ -1,23 +1,8 @@
 <script>
-	// Plain data. To publish a new version, add an entry to the TOP of `changelog`
-	// and update `latest` to match; the page does the rest.
-	const latest = {
-		version: '0.7.5',
-		date: '2026-11-26',
-		// Where the installer lives. A GitHub Releases asset URL works well, e.g.
-		// 'https://github.com/<username>/condotta/releases/latest/download/Condotta-Setup.exe'
-		url: '#',
-		platform: 'Windows 10 or later',
-		size: ''
-	};
-
-	const changelog = [
-		{
-			version: '0.7.5',
-			date: '2026-11-26',
-			changes: ['Initial release.']
-		}
-	];
+	// `latest` and `changelog` come from the condotta-releases GitHub repo (see +page.server.js).
+	let { data } = $props();
+	const latest = $derived(data.latest);
+	const changelog = $derived(data.changelog);
 </script>
 
 <svelte:head>
