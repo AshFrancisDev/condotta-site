@@ -29,6 +29,19 @@
 	<img src="{base}/images/condotta-dashboard-3.png" alt="condotta dashboard view">
 </div>
 
+<h2>How it works</h2>
+<div class="split">
+	<div class="text">
+
+		<p>Condotta works around 3 core pillars: What you do, who you do it for and when you do it.</p>
+		<p>Creating a client builds out a folder structure on your device and a connection point in the app. Every project, task, event and invoice is linked to the relevant client. You can even link emails by address and domain for easy reference.</p>
+		<p>Speaking of emails, Condotta comes with a built in, fully-featured email client, so you never have to click between apps to handle communication.</p>
+		<p>And getting paid is easier than ever, with invoice creation and management built in and the ability to send them direct to client at the click of a button.</p>
+		<p>The thing that makes Condotta different from other apps is that not only does it combine features, but it connects them, too. Everything is easier with Condotta.</p>
+	</div>
+	<img src="{base}/images/condotta-dashboard-3.png" alt="condotta dashboard view">
+</div>
+
 <style>
 	.lead {
 		font-size: 1.2rem;
