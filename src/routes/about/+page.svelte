@@ -39,7 +39,7 @@
 		<p>And getting paid is easier than ever, with invoice creation and management built in and the ability to send them direct to client at the click of a button.</p>
 		<p>The thing that makes Condotta different from other apps is that not only does it combine features, but it connects them, too. Everything is easier with Condotta.</p>
 	</div>
-	<img src="{base}/images/condotta-dashboard-3.png" alt="condotta dashboard view">
+	<img src="{base}/images/condotta-client-view.png" alt="condotta client view">
 </div>
 
 <style>
